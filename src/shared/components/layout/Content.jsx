@@ -8,7 +8,7 @@ function Content(props) {
 }
 
 Content.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Content;
