@@ -10,7 +10,7 @@ function App(props) {
   const { children } = props;
   return (
     <div className="App">
-      <Header title="Welcome to Lawis React App" />
+      <Header title="Routing" />
       <Content>{children}</Content>
       <Footer />
     </div>
