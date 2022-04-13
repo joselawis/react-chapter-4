@@ -1,20 +1,17 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './Notes.css';
 
-class Notes extends Component {
-  constructor() {
-    super();
-    this.state = {
-      notes: [
-        { id: 1, title: 'My note 1' },
-        { id: 2, title: 'My note 2' },
-        { id: 3, title: 'My note 3' },
-      ],
-    };
-  }
+export default function Notes() {
+  const state = {
+    notes: [
+      { id: 1, title: 'My note 1' },
+      { id: 2, title: 'My note 2' },
+      { id: 3, title: 'My note 3' },
+    ],
+  };
 
-  static renderNotes = (notes) => (
+  const renderNotes = (notes) => (
     <ul>
       {notes.map((note) => (
         <li key={note.id}>
@@ -24,19 +21,19 @@ class Notes extends Component {
     </ul>
   );
 
-  render() {
-    const { notes } = this.state;
+  const { notes } = state;
+  const { noteId } = useParams();
+  let selectedNote = false;
 
-    const selectedNote = false;
-
-    return (
-      <div className="Notes">
-        <h1>Notes</h1>
-
-        {Notes.renderNotes(selectedNote || notes)}
-      </div>
-    );
+  if (noteId > 0) {
+    selectedNote = notes.filter((note) => note.id === Number(noteId));
   }
-}
 
-export default Notes;
+  return (
+    <div className="Notes">
+      <h1>Notes</h1>
+
+      {renderNotes(selectedNote || notes)}
+    </div>
+  );
+}
